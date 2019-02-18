@@ -8,19 +8,20 @@
       <el-button type="info" @click="cancelbtn">退出</el-button>
     </el-header>
     <el-container>
-      <el-aside :width="menushow?'60px':'200px'">
+      <el-aside :width="menushow?'65px':'200px'" style="text-align: left">
         <div
-        style="color: white;height: 25px;line-height: 25px;font-size: 12px;background-color:#4a5064;letter-spacing: 0.1em;cursor: pointer;user-select:none;"
+        style="color: white;height: 25px;line-height: 25px;text-align:center;font-size: 12px;background-color:#4a5064;letter-spacing: 0.1em;cursor: pointer;user-select:none;"
         @click="menushow = !menushow"
         >|||</div>
         <el-menu
           background-color="#333744"
           text-color="#fff"
           active-text-color="#409eff"
-          :style="menushow?'width=60px;':'width=200px;'"
+          :style="menushow?'width:65px;':'width:200px;'"
           :collapse="menushow"
           :collapse-transition="false"
           :unique-opened="true"
+          :router="true"
         >
           <el-submenu :index="item.id + ''" v-for="(item,k) in menuList" :key="item.id">
             <template slot="title">
@@ -28,7 +29,7 @@
               <span>{{ item.authName }}</span>
             </template>
             <el-menu-item
-              index="item.id + '-' + item2.id"
+              :index="item2.path"
               v-for="item2 in item.children"
               :key="item2.id"
             >
